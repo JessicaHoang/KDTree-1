@@ -1,4 +1,3 @@
-package cs146project;
 
 import java.awt.Color;
 import java.awt.Graphics;
