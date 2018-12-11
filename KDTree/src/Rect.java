@@ -42,11 +42,12 @@ public class Rect extends JPanel
 		g.setColor(Color.black);
 		
 		//The following is a circle with a radius of 10, 10 and coordinate 150, 150
-		//belongs to a rectangle top left coordinate of width 10 and height 10 encompassing the cirle
+		//belongs to a rectangle top left coordinate of width 10 and height 10 encompassing the circle
+		//g.drawOval does not fill the circle
+		g.fillOval(150, 150, 10, 10);
+		
+		g.setColor(Color.green);
+		//the following is a horizontal line
+		g.drawLine(50, 155, 300, 155);
 	}
-	
-	
-	
-	
-
 }
