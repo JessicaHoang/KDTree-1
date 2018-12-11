@@ -1,7 +1,7 @@
 import java.util.*;
 import java.awt.geom.Point2D;
 
-public class KDTree {
+public class KDTree extends Node{
 	
 	// Represents direction of the partition
 	private static final boolean VERTICAL = true;
@@ -16,6 +16,19 @@ public class KDTree {
 		size = 0;
 	}
 	
+	public void search(){
+		if(root != null){
+			
+		}
+		
+	}
+	
+	public <T> void contains(T value){
+		if(value == null || root == null)
+		return;
+		
+	}
+	
 	// Empty Method
     public boolean isEmpty() {
     		return root == null;
@@ -25,4 +38,5 @@ public class KDTree {
     public int size() {
         return size;
     }
+
 }
