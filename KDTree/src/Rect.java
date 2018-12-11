@@ -50,4 +50,6 @@ public class Rect extends JPanel
 		//the following is a horizontal line
 		g.drawLine(50, 155, 300, 155);
 	}
+	
+	
 }
