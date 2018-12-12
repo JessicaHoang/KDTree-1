@@ -7,7 +7,7 @@ public class KDTree extends Node{
 	private static final boolean VERTICAL = true;
     private static final boolean HORIZOTAL = false;
 	
-	private Node root;
+	//private Node root;
 	private int size;
 	
 	// default empty tree
@@ -15,6 +15,44 @@ public class KDTree extends Node{
 		root = null;
 		size = 0;
 	}
+	
+	// Insert 2D points into the tree
+	 public void insert(Point2D p) {
+	        if (p == null) 
+	        		return;
+	        root = insert(root, p);
+	 }
+	 private Node insert(Node parent, Point2D p) {
+		 // If parent is null
+		 if (parent == null) {
+			 Node node = new Node();
+			 node.p = p;
+			 node.left = null;
+			 node.right = null;
+			 size++;
+			 return node;
+		 }
+		 if (p.getX() < parent.p.getX()) {
+			 if(parent.left != null) {
+				 parent.left = insert(parent.left, p);
+				 return parent;
+			 } 
+			 parent.left = insert(parent.left, p);
+		 } else {
+				 if (parent.right != null) {
+					 parent.right = insert(parent.right, p);
+					 return parent;
+				 }
+				 parent.right = insert(parent.right, p);
+			 }
+		 } else {
+			 if (parent.right != null) {
+				 parent.right = insert(parent.right, p);
+				 return parent;
+			 }
+			 parent.right = insert(parent.right, p);
+			 return parent;
+		 }      
 	
 	public void search(){
 		if(root != null){
