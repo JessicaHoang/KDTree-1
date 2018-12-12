@@ -23,8 +23,9 @@ public class KDTree extends Node{
 		
 	}
 	
-	public <T> void contains(T value){
-		if(value == null || root == null)
+	//Contains Method
+	public void contains(int value){
+		if(value == 0 || root == null)
 		return;
 		
 	}
