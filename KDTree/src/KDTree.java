@@ -53,11 +53,29 @@ public class KDTree extends Node{
 			 parent.right = insert(parent.right, p);
 			 return parent;
 		 }      
-	
+
 	public void search(){
-		if(root != null){
-			
+		public Node search(Node root, Point2D p){
+		//if root is null return null
+		if(root == null){
+			return null;
 		}
+		
+		//if x coordinate of p is less then x coordinate of root compare second component and so on
+		if(p.getX() < root.getX()){
+			if(p.getX() < parent.p.getX()){
+				return root.left;
+			}
+			//return root.left;
+		}
+		
+		//if x coordinate of p is greater then x coordinate of root compare second component and so on
+		if(p.getX() > root.getX()){
+			if(p.getX() > parent.p.getX()){
+				return root.right;
+			}
+		}
+	     }
 		
 	}
 	
