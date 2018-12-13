@@ -22,17 +22,18 @@ public class KDTree extends Node{
 	        		return;
 	        root = insert(root, p);
 	 }
+	 
 	 private Node insert(Node parent, Point2D p) {
 		 // If parent is null
 		 if (parent == null) {
 			 Node node = new Node();
-			 node.p = p;
+			 node.parent = p;
 			 node.left = null;
 			 node.right = null;
 			 size++;
 			 return node;
 		 }
-		 if (p.getX() < parent.p.getX()) {
+		 if (p.getX() < parent.parent.getX()) {
 			 if(parent.left != null) {
 				 parent.left = insert(parent.left, p);
 				 return parent;
@@ -45,29 +46,49 @@ public class KDTree extends Node{
 				 }
 				 parent.right = insert(parent.right, p);
 			 }
-		 } else {
-			 if (parent.right != null) {
-				 parent.right = insert(parent.right, p);
-				 return parent;
-			 }
-			 parent.right = insert(parent.right, p);
-			 return parent;
-		 }      
+		 return parent;      
+		 } 
 	
-	public void search(){
-		if(root != null){
-			
+	public boolean search(Point2D point) 
+	{
+		return searchHelper(root, point, 1);
+	}
+	
+	 public boolean searchHelper(Node node, Point2D p, int level){
+		
+		//if root is null return null
+		if(node == null){
+			System.out.println("The tree is empty!");
+			return false;
 		}
 		
-	}
-	
-	//Contains Method
-	public void contains(int value){
-		if(value == 0 || root == null)
-		return;
+		if(root.parent.equals(p))
+		{
+			return true;
+		}
 		
-	}
-	
+	//every odd level compare x coordinate	
+	   if (level % 2  == 0 ) //find horizontal 
+	   {
+		if(node.parent.getY() < p.getY() ){
+			searchHelper(node.right, p, level + 1);
+		} else {
+			searchHelper(node.left, p, level + 1 );
+		}
+		
+	   }
+	   
+	   else // find vertical
+	   { 
+		   if(node.parent.getX() < p.getX()) {
+			   searchHelper(node.right, p, level + 1);
+		   } else {
+			   searchHelper(node.left, p, level+ 1);
+		   }
+	   }
+	return false;
+	 }
+
 	// Empty Method
     public boolean isEmpty() {
     		return root == null;
