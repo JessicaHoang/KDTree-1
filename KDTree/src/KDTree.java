@@ -54,10 +54,16 @@ public class KDTree extends Node{
 			 return parent;
 		 }      
 
-	//serach method to find if tree has specific point
-	public boolean search(Node root, Point2D p){
+	//search method to find coordinates
+	public boolean search(Point2D point) 
+	{
+		return searchHelper(root, point, 1);
+	}
+	
+	 public boolean searchHelper(Node node, Point2D p, int level){
+		
 		//if root is null return null
-		if(root == null){
+		if(node == null){
 			System.out.println("The tree is empty!");
 			return false;
 		}
@@ -66,22 +72,27 @@ public class KDTree extends Node{
 		{
 			return true;
 		}
-		
-		//if x coordinate of p is less then x coordinate of root compare second component and so on
-		if(p.getX() < root.parent.getX()){
-			if(p.getX() < root.left.parent.getX()){
-				return search(root.left, p);
-			}
+	
+	   if (level % 2  == 0 ) //find horizontal 
+	   {
+		if(node.parent.getY() < p.getY() ){
+			searchHelper(node.right, p, level + 1);
+		} else {
+			searchHelper(node.left, p, level + 1 );
 		}
 		
-		//if x coordinate of p is greater then x coordinate of root compare second component and so on
-		if(p.getX() > root.parent.getX()){
-			if(p.getX() > root.right.parent.getX()){
-				return search(root.right, p);
-			}
-		}
-		return false;
-	}
+	   }
+	   
+	   else // find vertical
+	   { 
+		   if(node.parent.getX() < p.getX()) {
+			   searchHelper(node.right, p, level + 1);
+		   } else {
+			   searchHelper(node.left, p, level+ 1);
+		   }
+	   }
+	return false;
+	 }
 	
 	// Empty Method
     public boolean isEmpty() {
