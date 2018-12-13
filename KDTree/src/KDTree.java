@@ -54,35 +54,35 @@ public class KDTree extends Node{
 			 return parent;
 		 }      
 
-	public void search(){
-		public Node search(Node root, Point2D p){
+	//serach method to find if tree has specific point
+	public boolean search(Node root, Point2D p){
 		//if root is null return null
 		if(root == null){
-			return null;
+			System.out.println("The tree is empty!");
+			return false;
+		}
+		
+		if(root.parent.equals(p))
+		{
+			return true;
 		}
 		
 		//if x coordinate of p is less then x coordinate of root compare second component and so on
-		if(p.getX() < root.getX()){
-			if(p.getX() < parent.p.getX()){
-				return root.left;
+		if(p.getX() < root.parent.getX()){
+			if(p.getX() < root.left.parent.getX()){
+				return search(root.left, p);
 			}
 			//return root.left;
 		}
 		
 		//if x coordinate of p is greater then x coordinate of root compare second component and so on
-		if(p.getX() > root.getX()){
-			if(p.getX() > parent.p.getX()){
-				return root.right;
+		if(p.getX() > root.parent.getX()){
+			if(p.getX() > root.right.parent.getX()){
+				return search(root.right, p);
 			}
 		}
-	     }
 		
-	}
-	
-	public <T> void contains(T value){
-		if(value == null || root == null)
-		return;
-		
+		return false;
 	}
 	
 	// Empty Method
