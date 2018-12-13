@@ -72,7 +72,6 @@ public class KDTree extends Node{
 			if(p.getX() < root.left.parent.getX()){
 				return search(root.left, p);
 			}
-			//return root.left;
 		}
 		
 		//if x coordinate of p is greater then x coordinate of root compare second component and so on
@@ -81,7 +80,6 @@ public class KDTree extends Node{
 				return search(root.right, p);
 			}
 		}
-		
 		return false;
 	}
 	
