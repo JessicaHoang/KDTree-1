@@ -46,14 +46,18 @@ public class KDTree extends Node{
 				 }
 				 parent.right = insert(parent.right, p);
 			 }
+
 		 return parent;      
 		 } 
-	
+
+
+	//search method to find coordinates
 	public boolean search(Point2D point) 
 	{
 		return searchHelper(root, point, 1);
 	}
-	
+
+
 	 public boolean searchHelper(Node node, Point2D p, int level){
 		
 		//if root is null return null
@@ -66,8 +70,8 @@ public class KDTree extends Node{
 		{
 			return true;
 		}
-		
-	//every odd level compare x coordinate	
+
+			
 	   if (level % 2  == 0 ) //find horizontal 
 	   {
 		if(node.parent.getY() < p.getY() ){
@@ -77,7 +81,7 @@ public class KDTree extends Node{
 		}
 		
 	   }
-	   
+
 	   else // find vertical
 	   { 
 		   if(node.parent.getX() < p.getX()) {
@@ -87,8 +91,8 @@ public class KDTree extends Node{
 		   }
 	   }
 	return false;
-	 }
-
+	
+}
 	// Empty Method
     public boolean isEmpty() {
     		return root == null;
