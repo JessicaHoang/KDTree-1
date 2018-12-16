@@ -34,22 +34,36 @@ public class KDTree extends Node{
 			 return node;
 		 }
 		 if (p.getX() < parent.parent.getX()) {
-			 if(parent.left != null) {
+			 if(parent.left == null) {
 				 parent.left = insert(parent.left, p);
 				 return parent;
 			 } 
 			 parent.left = insert(parent.left, p);
 		 } else {
-				 if (parent.right != null) {
+				 if (parent.right == null) {
 					 parent.right = insert(parent.right, p);
 					 return parent;
 				 }
 				 parent.right = insert(parent.right, p);
 			 }
+		 
+		 if (p.getY() > parent.parent.getY()) {
+			 if(parent.left == null) {
+				 parent.left = insert(parent.left, p);
+				 return parent;
+			 } 
+			 parent.left = insert(parent.left, p);
+		 } else {
+				 if (parent.right == null) {
+					 parent.right = insert(parent.right, p);
+					 return parent;
+				 }
+				 parent.right = insert(parent.right, p);
+			 }
+		 
 
 		 return parent;      
 		 } 
-
 
 	//search method to find coordinates
 	public boolean search(Point2D point) 
